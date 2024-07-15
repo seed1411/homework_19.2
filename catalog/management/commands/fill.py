@@ -31,6 +31,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         Product.objects.all().delete()
         Category.objects.all().delete()
+        Category.truncate_table_restart_id()
 
         category_for_create = []
         products_for_create = []
