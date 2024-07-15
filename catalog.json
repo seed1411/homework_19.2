@@ -1,0 +1,70 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Выпечка",
+      "description": "Хлебобулочные изделия из теста"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Алкоголь",
+      "description": "Напитки содержащие спирт"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Вино",
+      "description": "Сделан из винограда",
+      "images": "",
+      "category": 2,
+      "price": 700,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Пиво",
+      "description": "Сделан из хлеба",
+      "images": "",
+      "category": 2,
+      "price": 200,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "булочка",
+      "description": "",
+      "images": "",
+      "category": 1,
+      "price": 20,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "пирог",
+      "description": "с вишневой начинкой",
+      "images": "",
+      "category": 1,
+      "price": 20,
+      "created_at": null,
+      "updated_at": null
+    }
+  }
+]
