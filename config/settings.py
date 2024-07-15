@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from fnc.config import config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,9 +54,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
+# Необходимо ввести параметры БАЗЫ ДАННЫХ!!!!!!
 DATABASES = {
-    'default': config()
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': '',
+        'HOST': '',
+        'PORT': '',
+        'PASSWORD': '',
+    }
 }
 
 

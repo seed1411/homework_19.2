@@ -4,7 +4,7 @@ from django.core.management import BaseCommand
 from catalog.models import Product, Category
 
 
-class Fill(BaseCommand):
+class Command(BaseCommand):
 
     @staticmethod
     def json_categories() -> list:
@@ -35,13 +35,21 @@ class Fill(BaseCommand):
         category_for_create = []
         products_for_create = []
 
-        for category in Fill.json_categories():
-            category_for_create.append(Category(**category))
+        for category in Command.json_categories():
+            category_for_create.append(Category(**category['fields']))
 
         Category.objects.bulk_create(category_for_create)
 
-        for product in Fill.json_products():
-            products_for_create.append(Product(**product))
+        for product in Command.json_products():
+            products_for_create.append(Product(
+                name=product['fields']['name'],
+                description=product['fields']['description'],
+                images=product['fields']['images'],
+                category=Category.objects.get(pk=product['fields']['category']),
+                price=product['fields']['price'],
+                created_at=product['fields']['created_at'],
+                updated_at=product['fields']['updated_at']
+            ))
 
         Product.objects.bulk_create(products_for_create)
 
