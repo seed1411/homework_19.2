@@ -18,7 +18,7 @@ def contacts(request):
     return render(request, "contacts.html")
 
 
-def prod_list(request, pk):
+def prod_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     context = {"product": product}
-    return render(request, "prod_list.html", context)
+    return render(request, "prod_detail.html", context)

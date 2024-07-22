@@ -20,7 +20,7 @@
                     <h1 class="card-title pricing-card-title">{{ product.price }} руб.</h1>
                     <p> {{ product.description | truncatechars:100 }}</p>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
-                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:prod_list' product.pk %} "
+                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:prod_detail' product.pk %} "
                        role="button">Подробнее</a>
                 </div>
 
