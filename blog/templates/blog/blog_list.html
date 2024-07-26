@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">БЛОГ</h1>
+    <p class="lead">Мысли в слух</p>
+</div>
+
+<div class="container">
+
+    <div class="row text-center">
+        <p>
+            <a class="btn btn-lg btn-block btn-outline-warning"
+               href="{% url 'blog:blog_create' %}"
+               role="button">Добавить статью</a>
+        </p>
+
+        {% for blog in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow" style="max-width: 600px; min-height: 500px">
+
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ blog.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <img src="{{ blog.image| mymedia }}" style="max-width: 400px; max-height: 190px">
+                    <p class="card-text">
+                        <p class="text-muted">{{ blog.content | truncatechars:100 }}</p>
+
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="{% url 'blog:blog_detail' blog.pk %}"
+                       role="button">Просмотр статьи</a>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

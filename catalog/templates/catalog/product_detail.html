@@ -23,10 +23,10 @@
                     <p> {{ object.description }}</p>
                     <button type="button" class="btn btn-lg btn-block btn-outline-success">Купить</button>
                     <a class="btn btn-lg btn-block btn-outline-warning"
-                       href="{% url 'catalog:product_update' product.pk %} "
+                       href="{% url 'catalog:product_update' object.pk %} "
                        role="button">Изменить</a>
                     <a class="btn btn-lg btn-block btn-outline-danger"
-                       href="{% url 'catalog:product_delete' product.pk %} "
+                       href="{% url 'catalog:product_delete' object.pk %} "
                        role="button">Удалить</a>
                     <a href="{% url 'catalog:product_views' %}" type="button"
                        class="btn btn-lg btn-block btn-outline-primary">Назад</a>
@@ -36,5 +36,5 @@
             </div>
         </div>
     </div>
-</div>
+
 {% endblock %}
