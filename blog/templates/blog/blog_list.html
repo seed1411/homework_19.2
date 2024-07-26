@@ -19,11 +19,12 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow" style="max-width: 600px; min-height: 500px">
 
-                <div class="card-header">
+                <div class="card-header" style="min-width: 200px; min-height: 80px">
                     <h4 class="my-0 font-weight-normal">{{ blog.title }}</h4>
                 </div>
+                <img src="{{ blog.image| mymedia }}" style="max-width: 400px; max-height: 180px">
                 <div class="card-body">
-                    <img src="{{ blog.image| mymedia }}" style="max-width: 400px; max-height: 190px">
+
                     <p class="card-text">
                         <p class="text-muted">{{ blog.content | truncatechars:100 }}</p>
 
