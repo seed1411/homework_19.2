@@ -30,13 +30,16 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy('catalog:product_views')
 
 
-def contacts(request):
-    if request.method == "POST":
+class ContactView(TemplateView):
+    template_name = "catalog/contacts.html"
+
+    def post(self, request):
         name = request.POST.get("name")
         phone = request.POST.get("phone")
         message = request.POST.get("message")
         print(f"{name}({phone}) - {message}")
-    return render(request, "catalog/contacts.html")
+        return render(request, "catalog/contacts.html")
+
 
 
 
