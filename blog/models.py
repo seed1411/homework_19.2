@@ -39,6 +39,7 @@ class Blog(models.Model):
     views_count = models.PositiveIntegerField(
         default=0,
         verbose_name='Просмотры',
+        editable=False,
     )
 
     class Meta:
