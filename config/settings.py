@@ -62,7 +62,7 @@ DATABASES = {
         "USER": "postgres",
         "HOST": "localhost",
         "PORT": "5433",
-        "PASSWORD": "",
+        "PASSWORD": "Crusis59qweRTYseed1411",
     }
 }
 
@@ -83,7 +83,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru-us"
 
 TIME_ZONE = "UTC"
 
