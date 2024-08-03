@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, BooleanField
 
-from catalog.models import Product
+from catalog.models import Product, Version
 
 
 class StyleFormMixin:
@@ -12,7 +12,6 @@ class StyleFormMixin:
                 field.widget.attrs['class'] = 'form-check-input'
             else:
                 field.widget.attrs['class'] = 'form-control'
-
 
 
 class ProductForm(StyleFormMixin, ModelForm):
@@ -36,5 +35,22 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_description(self):
         return self.valid_text(self.cleaned_data['description'])
+
+
+class VersionForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'
+
+    # def clean_current_version_flag(self):
+    #     current_version = self.cleaned_data['current_version_flag']
+    #     versions = Version.objects.filter(product= current_version_flag=True)
+    #     if len(versions) > 1:
+    #         raise ValidationError('Только одна версия может быть активной')
+    #     else:
+    #         return current_version
+
+
+
 
 

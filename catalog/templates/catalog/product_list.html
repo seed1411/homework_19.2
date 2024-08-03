@@ -23,7 +23,11 @@
                     <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
+                    {% if not product.price %}
+                    <h1 class="card-title pricing-card-title">Не указано</h1>
+                    {% else %}
                     <h1 class="card-title pricing-card-title">{{ product.price }} руб.</h1>
+                    {% endif %}
                     <p> {{ product.description | truncatechars:100 }}</p>
 
 
@@ -33,10 +37,16 @@
                        role="button">Подробнее</a>
 
                 </div>
-
+                <div class="card-footer">
+                    {% for version in product.versions.all %}
+                    {% if version.current_version_flag %}
+                    Версия: {{ version.number_version }}
+                    {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 
-{% endblock %}
+    {% endblock %}

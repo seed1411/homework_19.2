@@ -57,6 +57,7 @@ class Product(models.Model):
     )
     price = models.IntegerField(
         verbose_name="Цена",
+        default=0,
         help_text="введите цену на единицу товара",
         blank=True,
         null=True,
