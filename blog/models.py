@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Blog(models.Model):
+    """
+    Модель блога
+    """
     title = models.CharField(
         max_length= 250,
         verbose_name='Заголовок',
@@ -49,3 +52,7 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        self.image.delete()
+        super(Blog, self).delete(*args, **kwargs)

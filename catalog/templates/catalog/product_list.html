@@ -17,13 +17,24 @@
 
         {% for product in object_list %}
         <div class="col-3">
-            <div class="card mb-4 box-shadow" style="max-width: 600px; min-height: 500px">
+            <div class="card mb-4 box-shadow" style="max-width: 600px; height: 550px">
+
+                {% if product.images %}
                 <img src="{{ product.images| mymedia }}" style="max-width: 400px; max-height: 190px">
+                {% else %}
+                <img src="/media/product/dd70ce88-0468-427b-9b4b-e3b4b4ddf6f0.jpeg"
+                     style="max-width: 400px; max-height: 190px">
+                {% endif %}
+
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
+                    {% if not product.price %}
+                    <h1 class="card-title pricing-card-title">Не указано</h1>
+                    {% else %}
                     <h1 class="card-title pricing-card-title">{{ product.price }} руб.</h1>
+                    {% endif %}
                     <p> {{ product.description | truncatechars:100 }}</p>
 
 
@@ -33,10 +44,16 @@
                        role="button">Подробнее</a>
 
                 </div>
-
+                <div class="card-footer">
+                    {% if product.active_version %}
+                    Версия {{ product.active_version }}
+                    {% else %}
+                    Версия не указана
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 
-{% endblock %}
+    {% endblock %}

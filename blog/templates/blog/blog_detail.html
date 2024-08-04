@@ -13,8 +13,14 @@
             <div class="card box-shadow">
 
                 <div class="card-header">
+                    {% if object.image %}
                     <img class="card-img-top" src="{{ object.image| mymedia }}"
                          style="max-width: 600px; max-height: 400px">
+                    {% else %}
+                    <img src="/media/blog/dd70ce88-0468-427b-9b4b-e3b4b4ddf6f0.jpeg"
+                         style="max-width: 400px; max-height: 180px">
+                    {% endif %}
+
 
                 </div>
                 <div class="card-body">
