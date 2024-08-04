@@ -6,8 +6,13 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
+                    {% if object.image %}
                     <img class="card-img-top" src="{{ object.image| mymedia }}"
                          style="max-width: 600px; max-height: 400px">
+                    {% else %}
+                    <img src="/media/blog/dd70ce88-0468-427b-9b4b-e3b4b4ddf6f0.jpeg"
+                         style="max-width: 400px; max-height: 180px">
+                    {% endif %}
                     <form method="post">
                         {% csrf_token %}
                         <p>Хотите удалить блог"{{ object }}"</p>
