@@ -22,7 +22,12 @@
                 <div class="card-header" style="min-width: 200px; min-height: 80px">
                     <h4 class="my-0 font-weight-normal">{{ blog.title }}</h4>
                 </div>
+
+                {% if blog.image %}
                 <img src="{{ blog.image| mymedia }}" style="max-width: 400px; max-height: 180px">
+                {% else %}
+                <img src="/media/blog/dd70ce88-0468-427b-9b4b-e3b4b4ddf6f0.jpeg" style="max-width: 400px; max-height: 180px">
+                {% endif %}
                 <div class="card-body">
 
                     <p class="card-text">

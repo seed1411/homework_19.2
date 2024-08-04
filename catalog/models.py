@@ -2,6 +2,9 @@ from django.db import models, connection
 
 
 class Category(models.Model):
+    """
+    Модель категории продукта
+    """
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
@@ -31,13 +34,17 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Модель продукта
+    """
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
         help_text="Введите наименование продукта",
     )
     description = models.TextField(
-        verbose_name="Описание", help_text="Введите описание продукта"
+        verbose_name="Описание",
+        help_text="Введите описание продукта"
     )
     images = models.ImageField(
         upload_to="product/",
@@ -57,6 +64,7 @@ class Product(models.Model):
     )
     price = models.IntegerField(
         verbose_name="Цена",
+        default=0,
         help_text="введите цену на единицу товара",
         blank=True,
         null=True,
@@ -83,3 +91,50 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def active_version(self):
+        """
+        Возвращает активную версию продукта в ListView
+        """
+        return self.versions.filter(current_version_flag=True).first()
+
+    def delete(self, *args, **kwargs):
+        self.images.delete()
+        super(Product, self).delete(*args, **kwargs)
+
+
+class Version(models.Model):
+    """
+    Модель версии продукта
+    """
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name="Наименование продукта",
+        help_text="Выберите продукт",
+        related_name="versions",
+    )
+    number_version = models.FloatField(
+        verbose_name="Номер версии",
+        help_text="Введите номер версии продукта",
+    )
+    name_version = models.CharField(
+        max_length=250,
+        verbose_name="Название версии",
+        help_text="Введите название версии продукта",
+        null=True,
+        blank=True,
+    )
+    current_version_flag = models.BooleanField(
+        verbose_name="Текущая версия",
+        help_text="Установите флаг текущей версии",
+    )
+
+    def __str__(self):
+        return f'{self.number_version}'
+
+    class Meta:
+        verbose_name = 'Версия продукта'
+        verbose_name_plural = 'Версии продуктов'
+        ordering = ('number_version',)

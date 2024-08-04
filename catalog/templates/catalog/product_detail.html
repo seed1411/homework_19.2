@@ -17,9 +17,19 @@
                 </div>
 
                 <div class="card-body">
+                    {% if object.images %}
                     <img class="card-img-top" src="{{ object.images| mymedia }}"
                          style="max-width: 600px; max-height: 400px">
-                    <h2 class="card-title pricing-card-title">{{ object.price }} руб.</h2>
+                    {% else %}
+                    <img src="/media/product/dd70ce88-0468-427b-9b4b-e3b4b4ddf6f0.jpeg"
+                         style="max-width: 400px; max-height: 190px">
+                    {% endif %}
+
+                    {% if not object.price %}
+                    <h1 class="card-title pricing-card-title">Не указано</h1>
+                    {% else %}
+                    <h1 class="card-title pricing-card-title">{{ object.price }} руб.</h1>
+                    {% endif %}
                     <p> {{ object.description }}</p>
                     <button type="button" class="btn btn-lg btn-block btn-outline-success">Купить</button>
                     <a class="btn btn-lg btn-block btn-outline-warning"
@@ -37,4 +47,4 @@
         </div>
     </div>
 
-{% endblock %}
+    {% endblock %}
