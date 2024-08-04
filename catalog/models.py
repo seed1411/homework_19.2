@@ -2,6 +2,9 @@ from django.db import models, connection
 
 
 class Category(models.Model):
+    """
+    Модель категории продукта
+    """
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
@@ -31,6 +34,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Модель продукта
+    """
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
@@ -87,10 +93,16 @@ class Product(models.Model):
 
     @property
     def active_version(self):
+        """
+        Возвращает активную версию продукта в ListView
+        """
         return self.versions.filter(current_version_flag=True).first()
 
 
 class Version(models.Model):
+    """
+    Модель версии продукта
+    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,

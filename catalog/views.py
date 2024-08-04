@@ -8,28 +8,46 @@ from catalog.models import Product, Version
 
 
 class ProductListView(ListView):
+    """
+    Вывод списка всех продуктов
+    """
     model = Product
 
 
 class ProductDetailView(DetailView):
+    """
+    Вывод детальной страницы продукта
+    """
     model = Product
 
 
 class ProductCreateView(CreateView):
+    """
+    Вывод формы создания нового продукта
+    """
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_views')
 
 
 class ProductUpdateView(UpdateView):
+    """
+    Вывод формы редактирования продукта
+    """
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_views')
 
     def get_success_url(self):
+        """
+        Возвращает URL для перехода на детальную страницу продукта после успешного редактирования
+        """
         return reverse('catalog:product_detail', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
+        """
+        Добавляет форму версии продукта к контексту
+        """
         context_data = super().get_context_data(**kwargs)
         VersionFormset = inlineformset_factory(Product, Version, VersionForm, extra=1)
         if self.request.method == 'POST':
@@ -39,6 +57,9 @@ class ProductUpdateView(UpdateView):
         return context_data
 
     def form_valid(self, form):
+        """
+        Проверка формы и формы версии на правильность заполнения
+        """
         context_data = self.get_context_data()
         formset = context_data['formset']
         if form.is_valid() and formset.is_valid():
@@ -55,14 +76,24 @@ class ProductUpdateView(UpdateView):
 
 
 class ProductDeleteView(DeleteView):
+    """
+    Вывод формы удаления продукта
+    """
     model = Product
     success_url = reverse_lazy('catalog:product_views')
 
 
 class ContactView(TemplateView):
+    """
+    Вывод страницы контактов
+    """
     template_name = "catalog/contacts.html"
 
     def post(self, request):
+        """
+        Отправка POST запроса с формы контактов
+
+        """
         name = request.POST.get("name")
         phone = request.POST.get("phone")
         message = request.POST.get("message")

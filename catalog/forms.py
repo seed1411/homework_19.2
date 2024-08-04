@@ -5,6 +5,9 @@ from catalog.models import Product, Version
 
 
 class StyleFormMixin:
+    """
+    Mixin для стилизации формы.
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
@@ -15,12 +18,18 @@ class StyleFormMixin:
 
 
 class ProductForm(StyleFormMixin, ModelForm):
+    """
+    Форма добавления и редактирования продукта.
+    """
     class Meta:
         model = Product
         exclude = ['created_at', 'updated_at']
 
     @staticmethod
     def valid_text(text):
+        """
+        Проверка текста на наличие запрещенных слов.
+        """
         edited_text = text.lower().strip(' ,.!:" ').replace('.', '').replace(',', '').split()
         forbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция',
                            'радар']
@@ -31,13 +40,22 @@ class ProductForm(StyleFormMixin, ModelForm):
             return text
 
     def clean_name(self):
+        """
+        Проверка названия продукта на наличие запрещенных слов.
+        """
         return self.valid_text(self.cleaned_data['name'])
 
     def clean_description(self):
+        """
+        Проверка описания продукта на наличие запрещенных слов.
+        """
         return self.valid_text(self.cleaned_data['description'])
 
 
 class VersionForm(StyleFormMixin, ModelForm):
+    """
+    Форма добавления и редактирования версии продукта.
+    """
     class Meta:
         model = Version
         fields = '__all__'
