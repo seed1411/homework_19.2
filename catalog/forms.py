@@ -42,13 +42,6 @@ class VersionForm(StyleFormMixin, ModelForm):
         model = Version
         fields = '__all__'
 
-    # def clean_current_version_flag(self):
-    #     current_version = self.cleaned_data['current_version_flag']
-    #     versions = Version.objects.filter(product= current_version_flag=True)
-    #     if len(versions) > 1:
-    #         raise ValidationError('Только одна версия может быть активной')
-    #     else:
-    #         return current_version
 
 
 

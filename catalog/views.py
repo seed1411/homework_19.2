@@ -1,6 +1,6 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from catalog.forms import ProductForm, VersionForm
@@ -26,6 +26,9 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_views')
 
+    def get_success_url(self):
+        return reverse('catalog:product_detail', kwargs={'pk': self.object.pk})
+
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         VersionFormset = inlineformset_factory(Product, Version, VersionForm, extra=1)
@@ -42,6 +45,10 @@ class ProductUpdateView(UpdateView):
             self.object = form.save()
             formset.instance = self.object
             formset.save()
+            versions = Version.objects.filter(product=self.object, current_version_flag=True)
+            if len(versions) > 1:
+                form.add_error(None, 'У продукта не может быть более одной активной версии.')
+                return super().form_invalid(form)
             return super().form_valid(form)
         else:
             return self.render_to_response(self.get_context_data(form=form, formset=formset))
