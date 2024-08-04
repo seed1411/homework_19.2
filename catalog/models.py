@@ -85,6 +85,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def active_version(self):
+        return self.versions.filter(current_version_flag=True).first()
+
 
 class Version(models.Model):
     product = models.ForeignKey(
@@ -111,7 +115,7 @@ class Version(models.Model):
     )
 
     def __str__(self):
-        return f'{self.number_version} ({self.name_version})'
+        return f'{self.number_version}'
 
     class Meta:
         verbose_name = 'Версия продукта'

@@ -1,5 +1,3 @@
-from itertools import product
-
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -11,14 +9,6 @@ from catalog.models import Product, Version
 
 class ProductListView(ListView):
     model = Product
-
-    # def get_context_data(self, **kwargs):
-    #     context_data = super().get_context_data(**kwargs)
-    #     versions = Version.objects.filter(product_id=self.kwargs['id'])
-    #     for version in versions:
-    #         if version['current_version_flag']:
-    #             context_data["current_version"] = version
-    #             return context_data
 
 
 class ProductDetailView(DetailView):
