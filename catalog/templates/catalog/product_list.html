@@ -38,12 +38,11 @@
 
                 </div>
                 <div class="card-footer">
-<!--                    {% for version in product.versions.all %}-->
-<!--                    {% if version.current_version_flag %}-->
-<!--                    Версия: {{ version.number_version }}-->
-<!--                    {% endif %}-->
-<!--                    {% endfor %}-->
+                    {% if product.active_version %}
                     Версия {{ product.active_version }}
+                    {% else %}
+                    Версия не указана
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -98,6 +98,10 @@ class Product(models.Model):
         """
         return self.versions.filter(current_version_flag=True).first()
 
+    def delete(self, *args, **kwargs):
+        self.images.delete()
+        super(Product, self).delete(*args, **kwargs)
+
 
 class Version(models.Model):
     """
