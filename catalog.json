@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Выпечка",
-      "description": "Хлебобулочные изделия из теста"
+      "description": "Мелкоштучные хлебобулочные изделия включают в себя выпечку преимущественно из хлебного теста весом до 250 граммов. Это булочки, рогалики, круассаны."
     }
   },
   {
@@ -12,7 +12,15 @@
     "pk": 2,
     "fields": {
       "name": "Алкоголь",
-      "description": "Напитки содержащие спирт"
+      "description": "это психоактивное вещество, вызывающее зависимость. В избыточном количестве он опасен для здоровья."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Овощи",
+      "description": "Сочные части травянистых растений, употребляемые в пищу человеком в свежем или переработанном виде. Для пищевкусовых целей используют плоды или завязи их, молодые побеги, корни, корневища, клубни, соцветия, семена, листья, черешки листьев, кочаны, луковицы, утолщённые стебли овощных растений."
     }
   },
   {
@@ -20,12 +28,12 @@
     "pk": 1,
     "fields": {
       "name": "Вино",
-      "description": "Сделан из винограда",
-      "images": "",
+      "description": "Алкогольный напиток, обычно изготавливаемый из ферментированного виноградного сока. Естественный химический баланс винограда таков, что он может бродить без добавления сахаров, кислот, ферментов или других питательных веществ. Вино производится путем ферментации дробленого винограда с использованием различных видов дрожжей.",
+      "images": "product/fonstola.ru_365437.jpg",
       "category": 2,
-      "price": 700,
-      "created_at": null,
-      "updated_at": null
+      "price": 800,
+      "created_at": "2024-07-15",
+      "updated_at": "2024-08-04"
     }
   },
   {
@@ -33,38 +41,177 @@
     "pk": 2,
     "fields": {
       "name": "Пиво",
-      "description": "Сделан из хлеба",
-      "images": "",
+      "description": "Слабоалкогольный напиток, получаемый спиртовым брожением солодового сусла с помощью пивных дрожжей, обычно в присутствии хмеля. Содержание алкоголя в большинстве сортов пива 3—6 % (иногда до 12 %), питательных веществ, в первую очередь, углеводов — 7—10 %, углекислого газа — 0,3—0,4 %",
+      "images": "product/scale_1200_1.jpeg",
       "category": 2,
       "price": 200,
-      "created_at": null,
-      "updated_at": null
+      "created_at": "2024-07-15",
+      "updated_at": "2024-07-20"
     }
   },
   {
     "model": "catalog.product",
     "pk": 3,
     "fields": {
-      "name": "булочка",
-      "description": "",
-      "images": "",
+      "name": "Булочка",
+      "description": "Небольшое хлебобулочное изделие массой до 500 г. Изготавливаются булочки из различных видов муки: ржаной, пшеничной, кукурузной, мелкого и грубого помола. Форма может быть любой: круглой, овальной, вытянутой, фигурной.",
+      "images": "product/14977107004820_1920x1200.jpg",
       "category": 1,
-      "price": 20,
-      "created_at": null,
-      "updated_at": null
+      "price": 40,
+      "created_at": "2024-07-15",
+      "updated_at": "2024-08-03"
     }
   },
   {
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-      "name": "пирог",
-      "description": "с вишневой начинкой",
-      "images": "",
+      "name": "Пирог",
+      "description": "Праздничное (свадебное) обрядовое хлебобулочное изделие из теста с начинкой, которое выпекается или жарится",
+      "images": "product/30258560048693886_c878.jpg",
       "category": 1,
-      "price": 20,
-      "created_at": null,
-      "updated_at": null
+      "price": 200,
+      "created_at": "2024-07-15",
+      "updated_at": "2024-07-20"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Виски",
+      "description": "Разновидность дистиллированного алкогольного напитка, приготовленного из ферментированного зернового сусла. Различные зерна (которые могут быть солодовыми) используются для различных сортов, включая ячмень, кукурузу, рожь и пшеницу. Виски обычно выдерживается в деревянных бочках, которые часто являются старыми бочках из-под хереса или также могут быть сделаны из обугленного белого дуба.",
+      "images": "product/fonstola.ru_413169.jpg",
+      "category": 2,
+      "price": 1195,
+      "created_at": "2024-07-20",
+      "updated_at": "2024-07-20"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Огурцы",
+      "description": "Это плоды однолетнего травянистого растения семейства Тыквенные. Относятся к овощным культурам. Плоды располагаются на длинном стелющемся шершавом стебле, который в длину может достигать 2 метров. Листья — ярко-зеленые, сердцевидные, большие. Плоды вытянутой цилиндрической формы, имеют кожуру ярко-зеленого и темно-зеленого цвета и сочную мякоть белого или слегка зеленоватого оттенка, многосемянные. Вкус огурца свежий, нейтральный.",
+      "images": "product/1677131327_3-13_oYb7Awh.jpg",
+      "category": 3,
+      "price": 15,
+      "created_at": "2024-07-25",
+      "updated_at": "2024-07-25"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 19,
+    "fields": {
+      "name": "Test продукт",
+      "description": "TEST",
+      "images": "",
+      "category": null,
+      "price": 0,
+      "created_at": "2024-08-04",
+      "updated_at": "2024-08-04"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 3,
+      "number_version": 1.0,
+      "name_version": "Базовая",
+      "current_version_flag": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 3,
+      "number_version": 1.1,
+      "name_version": "Кастом Мак",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "number_version": 0.8,
+      "name_version": "Бета Вино",
+      "current_version_flag": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "product": 1,
+      "number_version": 1.0,
+      "name_version": "Релизная",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "product": 5,
+      "number_version": 1.0,
+      "name_version": "Классика",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 7,
+      "number_version": 1.4,
+      "name_version": "Усовершенствованные",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 7,
+    "fields": {
+      "product": 2,
+      "number_version": 1.0,
+      "name_version": "Хмель Стайл",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 8,
+    "fields": {
+      "product": 4,
+      "number_version": 1.0,
+      "name_version": "База",
+      "current_version_flag": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 9,
+    "fields": {
+      "product": 4,
+      "number_version": 1.2,
+      "name_version": "Прихорошенный",
+      "current_version_flag": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 10,
+    "fields": {
+      "product": 3,
+      "number_version": 1.2,
+      "name_version": "Декупаж булка",
+      "current_version_flag": true
     }
   }
 ]
