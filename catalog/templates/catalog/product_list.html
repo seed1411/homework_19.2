@@ -7,12 +7,13 @@
 </div>
 
 <div class="container">
-
     <div class="row text-center">
         <p>
+            {% if user.is_authenticated %}
             <a class="btn btn-lg btn-block btn-outline-warning"
                href="{% url 'catalog:product_create' %} "
                role="button">Добавить продукт</a>
+            {% endif %}
         </p>
 
         {% for product in object_list %}

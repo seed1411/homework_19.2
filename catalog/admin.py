@@ -15,8 +15,8 @@ class ProductAdmin(admin.ModelAdmin):
     """
     Админка модели Product
     """
-    list_display = ("id", "name", "price", "category")
-    list_filter = ("category",)
+    list_display = ("id", "name", "price", "category", 'owner')
+    list_filter = ("category", "owner")
     search_fields = ("name", "description")
 
 
