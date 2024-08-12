@@ -10,7 +10,7 @@ class User(AbstractUser):
 
     email = models.EmailField(
         unique=True,
-        verbose_name='Email',
+        verbose_name='email',
     )
     phone = models.CharField(
         max_length=35,
@@ -29,6 +29,12 @@ class User(AbstractUser):
         verbose_name='Страна',
         blank=True,
         null=True
+    )
+    token = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name='Токен'
     )
 
     USERNAME_FIELD = "email"
