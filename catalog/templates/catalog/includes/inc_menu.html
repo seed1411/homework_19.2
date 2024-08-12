@@ -5,6 +5,7 @@
         <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:contacts' %}">Контакты</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'blog:blog_views' %}">Блог</a>
         {% if user.is_authenticated %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile' user.pk %}">Профиль</a>
         <a class="p-2 btn btn-outline-danger" href="{% url 'users:logout' %}">Выйти</a>
         Вы зашли под профилем: {{ user.email }}
         {% else %}
