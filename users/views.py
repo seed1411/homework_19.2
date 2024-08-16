@@ -30,7 +30,7 @@ class UserRegisterView(CreateView):
         host = self.request.get_host()
         token = secrets.token_hex(16)
         user.token = token
-        user.save()
+        user.save(update_fields=['token', 'is_active'])
         url = f'http://{host}/users/email-confirm/{token}'
         send_mail(
             "Подтверждение почты",
@@ -47,7 +47,7 @@ def email_verification(request, token):
     """
     user = get_object_or_404(User, token=token)
     user.is_active = True
-    user.save()
+    user.save(update_fields=['is_active'])
     return redirect(reverse('users:login'))
 
 

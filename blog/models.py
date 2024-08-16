@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Blog(models.Model):
     """
@@ -43,6 +45,14 @@ class Blog(models.Model):
         default=0,
         verbose_name='Просмотры',
         editable=False,
+    )
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name='Создатель карточки блога',
+        blank=True,
+        null=True,
+        related_name='blogs_users'  # related_name для получения всех блогов пользователя
     )
 
     class Meta:
