@@ -29,10 +29,12 @@
                     {% endif %}
                     <p> {{ object.description }}</p>
                     <button type="button" class="btn btn-lg btn-block btn-outline-success">Купить</button>
-                    {% if user.is_authenticated %}
+                    {% if perms.catalog.can_edit_is_published and perms.catalog.can_edit_description and perms.catalog.can_edit_category or object.owner == user or user.is_superuser %}
                     <a class="btn btn-lg btn-block btn-outline-warning"
                        href="{% url 'catalog:product_update' object.pk %} "
                        role="button">Изменить</a>
+                    {% endif %}
+                    {% if user.is_superuser %}
                     <a class="btn btn-lg btn-block btn-outline-danger"
                        href="{% url 'catalog:product_delete' object.pk %} "
                        role="button">Удалить</a>
