@@ -1,15 +1,12 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Магазин дешевых цен</h1>
-    <p class="lead">Покупай в один клик - экономь на низких ценах</p>
-</div>
 
 <div class="container">
 
     <div class="row text-center">
-        <div class="col">
+        <div class="col-3"></div>
+        <div class="col-6">
             <div class="card mb-4 box-shadow">
 
                 <div class="card-header">
@@ -32,10 +29,12 @@
                     {% endif %}
                     <p> {{ object.description }}</p>
                     <button type="button" class="btn btn-lg btn-block btn-outline-success">Купить</button>
-                    {% if user.is_authenticated %}
+                    {% if perms.catalog.can_edit_is_published and perms.catalog.can_edit_description and perms.catalog.can_edit_category or object.owner == user or user.is_superuser %}
                     <a class="btn btn-lg btn-block btn-outline-warning"
                        href="{% url 'catalog:product_update' object.pk %} "
                        role="button">Изменить</a>
+                    {% endif %}
+                    {% if user.is_superuser %}
                     <a class="btn btn-lg btn-block btn-outline-danger"
                        href="{% url 'catalog:product_delete' object.pk %} "
                        role="button">Удалить</a>
