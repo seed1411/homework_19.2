@@ -23,7 +23,7 @@ class ProductForm(StyleFormMixin, ModelForm):
     """
     class Meta:
         model = Product
-        exclude = ['created_at', 'updated_at', 'owner']
+        exclude = ['created_at', 'updated_at', 'owner', 'is_published']
 
     @staticmethod
     def valid_text(text):
@@ -50,6 +50,15 @@ class ProductForm(StyleFormMixin, ModelForm):
         Проверка описания продукта на наличие запрещенных слов.
         """
         return self.valid_text(self.cleaned_data['description'])
+
+
+class ProductModeratorForm(ModelForm):
+    """
+    Форма модераторского редактирования продукта.
+    """
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'is_published')
 
 
 class VersionForm(StyleFormMixin, ModelForm):
