@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
@@ -6,7 +7,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.servises import get_categories_from_cache
 
 
 class ProductListView(ListView):
@@ -121,6 +123,20 @@ class ContactView(TemplateView):
         message = request.POST.get("message")
         print(f"{name}({phone}) - {message}")
         return render(request, "catalog/contacts.html")
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    """
+    Вывод списка всех категорий продуктов
+    """
+    model = Category
+
+    def get_queryset(self):
+        """
+        Получение данных
+        """
+        return get_categories_from_cache()
+
 
 
 
