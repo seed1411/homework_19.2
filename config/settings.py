@@ -3,18 +3,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
-
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -36,6 +33,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware"
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -58,18 +57,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Необходимо ввести параметры БАЗЫ ДАННЫХ!!!!!!
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "HOST": "localhost",
-        "PORT": "5433",
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": os.getenv('NAME'),
+        "USER": os.getenv('USER_NAME'),
+        "HOST": os.getenv('HOST'),
+        "PORT": os.getenv('PORT'),
         "PASSWORD": os.getenv('PASSWORD'),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -86,7 +83,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = "ru-us"
 
 TIME_ZONE = "UTC"
@@ -95,16 +91,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR / "media",)
+MEDIA_ROOT = os.path.join(BASE_DIR / "media", )
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -113,13 +107,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_URL = '/users/login/'
 
-# Введите свои данные почты !!!!
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'False'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
@@ -127,8 +120,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
 
 CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": os.getenv('LOCATION'),
-        }
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": os.getenv('LOCATION'),
     }
+}
